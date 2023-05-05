@@ -17,13 +17,15 @@ struct DetailView: View {
             TextField("Enter a name", text: $friend.name)
             
             Text("Bringing:")
-            TextField("Enter a name", text: $friend.bringing)
+            TextField("Bringing", text: $friend.bringing)
             
             Text("Notes:")
-            TextField("Enter a name", text: $friend.notes)
+            TextField("Enter notes", text: $friend.notes)
             
             Spacer()
         }
+        .navigationBarBackButtonHidden()
+        .navigationBarTitleDisplayMode(.inline)
         .textFieldStyle(.roundedBorder)
         .padding()
         .toolbar {
