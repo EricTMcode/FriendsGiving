@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ListView: View {
     @EnvironmentObject var friendsListVM: FriendsListViewModel
+    @State private var sheetIsPresented = false
     
     var body: some View {
         NavigationStack {
@@ -20,7 +21,7 @@ struct ListView: View {
                         VStack(alignment: .leading) {
                             Text(friend.name)
                                 .font(.title2)
-                            Text("Turkey")
+                            Text(friend.bringing)
                         }
                     }
                 }
@@ -35,11 +36,16 @@ struct ListView: View {
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        
+                        sheetIsPresented.toggle()
                     } label: {
                         Image(systemName: "plus")
                     }
                     
+                }
+            }
+            .sheet(isPresented: $sheetIsPresented) {
+                NavigationStack {
+                    DetailView(friend: Friend())
                 }
             }
         }

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct DetailView: View {
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var friendsListVM: FriendsListViewModel
     @State var friend: Friend
     
     var body: some View {
@@ -36,6 +37,7 @@ struct DetailView: View {
             }
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button("Save") {
+                    friendsListVM.saveFriend(friend: friend)
                     dismiss()
                 }
             }
@@ -47,6 +49,7 @@ struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
             DetailView(friend: Friend.example)
+                .environmentObject(FriendsListViewModel())
         }
     }
 }
